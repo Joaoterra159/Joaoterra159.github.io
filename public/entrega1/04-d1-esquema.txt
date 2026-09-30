@@ -1,4 +1,14 @@
-PREENCHER APÓS EXECUTAR NO D1:
-SELECT name, type FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' ORDER BY type, name;
+Consulta executada no D1:
 
-Esperado: oauth_transactions_expiry, sessions_expiry, oauth_transactions, sessions (com seus respectivos tipos).
+SELECT name, type
+FROM sqlite_schema
+WHERE name NOT LIKE 'sqlite_%'
+ORDER BY type, name;
+
+Resultado observado:
+
+oauth_transactions_expiry | index
+sessions_expiry           | index
+_cf_KV                    | table
+oauth_transactions        | table
+sessions                  | table
