@@ -1,2 +1,2 @@
-Homepage URL: SUBSTITUA_URL_BASE
-Authorization callback URL: SUBSTITUA_URL_BASE/oauth/callback/github
+Homepage URL: https://joaoterra159-github-io.pages.dev
+Authorization callback URL: https://joaoterra159-github-io.pages.dev/oauth/callback/github
