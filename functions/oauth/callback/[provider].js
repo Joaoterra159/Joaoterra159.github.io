@@ -15,7 +15,7 @@ export async function onRequestGet(context) {
   await context.env.DB.prepare('DELETE FROM oauth_transactions WHERE id_hash=?').bind(txHash).run();
   const form=new URLSearchParams({client_id:context.env[cfg.clientId],client_secret:context.env[cfg.clientSecret],code,redirect_uri:`${context.env.PUBLIC_BASE_URL}/oauth/callback/${provider}`,code_verifier:row.code_verifier});
   if(provider==='google') form.set('grant_type','authorization_code');
-  const tr=await fetch(cfg.token,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},body:form}); if(!tr.ok) return fail('Falha na troca do código');
+  const tr=await fetch(cfg.token,{method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},body:form}); if(!tr.ok){const erro=await tr.text(); return fail(`Falha na troca do código: ${erro}`,400);}  
   const tokens=await tr.json(); let issuer,subject,email=null,displayName=null;
   if(provider==='google'){
     if(!tokens.id_token) return fail('Identidade ausente');
